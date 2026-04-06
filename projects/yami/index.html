@@ -1,650 +1,541 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Выгребные Ямы | Монтаж Канализации и Отопления</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Montserrat', 'sans-serif'],
-                        'display': ['Oswald', 'sans-serif'],
-                    },
-                    colors: {
-                        'brand-orange': '#FF6B35',
-                        'brand-dark': '#1A1A2E',
-                        'brand-gray': '#16213E',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'slide-up': 'slideUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-bg {
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(247, 147, 30, 0.1) 0%, transparent 50%),
-                linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
-        }
-        .service-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
-        }
-        .btn-glow {
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-            transition: all 0.3s ease;
-        }
-        .btn-glow:hover {
-            box-shadow: 0 0 40px rgba(255, 107, 53, 0.8);
-            transform: scale(1.05);
-        }
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .phone-pulse {
-            animation: phonePulse 2s infinite;
-        }
-        @keyframes phonePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        .tractor-icon {
-            animation: drive 3s ease-in-out infinite;
-        }
-        @keyframes drive {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
-        }
-    </style>
-<base target="_blank">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СептикПро — Выгребные ямы под ключ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0A0A0A; --dark: #111111; --coal: #1A1A1A; --stone: #2A2826;
+    --rust: #C94B1A; --rust2: #E85D20; --amber: #F0821A;
+    --cream: #F5EFE6; --warm: #C8BFB5; --muted: #7A736C;
+    --border: rgba(255,255,255,0.07);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--cream); font-family: 'Barlow', sans-serif; font-weight: 400; overflow-x: hidden; cursor: none; }
+  .cursor { width: 12px; height: 12px; background: var(--rust2); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width .2s, height .2s, background .2s; }
+  .cursor-ring { width: 36px; height: 36px; border: 1.5px solid rgba(232,93,32,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform .1s ease, width .3s, height .3s, opacity .3s; }
+  body:hover .cursor { opacity: 1; }
+  a:hover ~ .cursor, button:hover ~ .cursor { width: 20px; height: 20px; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 0; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid transparent; transition: border-color .4s, background .4s, backdrop-filter .4s; }
+  nav.scrolled { border-color: var(--border); background: rgba(10,10,10,0.92); backdrop-filter: blur(16px); }
+  .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--cream); }
+  .logo-mark { width: 40px; height: 40px; background: var(--rust); display: flex; align-items: center; justify-content: center; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; letter-spacing: 0.5px; }
+  .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; }
+  .logo-text span { color: var(--rust2); }
+  .logo-sub { font-size: 10px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--warm); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; position: relative; padding-bottom: 2px; transition: color .3s; }
+  .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--rust2); transition: width .3s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { display: flex; align-items: center; gap: 10px; background: var(--rust); color: #fff !important; padding: 10px 22px; font-size: 12px !important; letter-spacing: 2px !important; text-transform: uppercase; font-weight: 700 !important; text-decoration: none; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); transition: background .3s, transform .2s !important; }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--rust2) !important; transform: scale(1.03) !important; }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 64px 72px; position: relative; z-index: 2; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(201,75,26,0.4); background: rgba(201,75,26,0.08); padding: 6px 16px; margin-bottom: 32px; align-self: flex-start; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust2); font-weight: 600; }
+  .hero-badge-dot { width: 6px; height: 6px; background: #4ADE80; border-radius: 50%; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 9vw, 128px); line-height: 0.9; letter-spacing: 2px; margin-bottom: 28px; }
+  .hero-title .line { overflow: hidden; display: block; }
+  .hero-title .inner { display: block; transform: translateY(100%); animation: slideUp 1s cubic-bezier(.16,1,.3,1) forwards; }
+  .hero-title .inner:nth-child(1) { animation-delay: .1s; }
+  .hero-title .l2 .inner { animation-delay: .2s; }
+  .hero-title .l3 .inner { animation-delay: .3s; }
+  .hero-title em { font-style: normal; color: var(--rust2); }
+  @keyframes slideUp { to { transform: translateY(0); } }
+  .hero-desc { font-size: 16px; line-height: 1.7; color: var(--warm); max-width: 400px; margin-bottom: 40px; opacity: 0; animation: fadeIn .8s .6s forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .hero-actions { display: flex; align-items: center; gap: 20px; opacity: 0; animation: fadeIn .8s .8s forwards; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 12px; background: var(--rust); color: #fff; padding: 16px 32px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; text-decoration: none; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); transition: background .3s, transform .2s, box-shadow .3s; }
+  .btn-primary:hover { background: var(--rust2); box-shadow: 0 0 40px rgba(232,93,32,0.4); transform: translateY(-2px); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 10px; color: var(--warm); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(200,191,181,0.3); padding-bottom: 2px; transition: color .3s, border-color .3s; }
+  .btn-ghost:hover { color: var(--cream); border-color: var(--rust2); }
+  .hero-right { position: relative; overflow: hidden; background: var(--coal); }
+  .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--black) 0%, transparent 30%), linear-gradient(to top, var(--black) 0%, transparent 25%); z-index: 1; }
+  .hero-stats { position: absolute; bottom: 72px; right: 48px; z-index: 3; display: flex; flex-direction: column; gap: 16px; }
+  .stat-pill { background: rgba(10,10,10,0.85); border: 1px solid var(--border); backdrop-filter: blur(12px); padding: 16px 24px; display: flex; align-items: center; gap: 16px; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); transform: translateX(60px); opacity: 0; animation: slideInR .8s cubic-bezier(.16,1,.3,1) forwards; }
+  .stat-pill:nth-child(1) { animation-delay: .5s; }
+  .stat-pill:nth-child(2) { animation-delay: .65s; }
+  .stat-pill:nth-child(3) { animation-delay: .8s; }
+  @keyframes slideInR { to { transform: translateX(0); opacity: 1; } }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--rust2); line-height: 1; }
+  .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); line-height: 1.4; }
+  .hero-bg-text { position: absolute; bottom: -40px; left: -20px; z-index: 0; font-family: 'Bebas Neue', sans-serif; font-size: 300px; line-height: 1; color: rgba(255,255,255,0.025); pointer-events: none; white-space: nowrap; letter-spacing: -5px; }
+  .strip { background: var(--rust); padding: 14px 48px; display: flex; align-items: center; gap: 0; overflow: hidden; position: relative; z-index: 2; }
+  .strip-inner { display: flex; align-items: center; gap: 48px; animation: ticker 20s linear infinite; white-space: nowrap; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .strip-item { display: flex; align-items: center; gap: 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.9); flex-shrink: 0; }
+  .strip-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+  .section { padding: 120px 48px; position: relative; }
+  .section-dark { background: var(--dark); }
+  .section-coal { background: var(--coal); }
+  .section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust2); font-weight: 700; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-label::before { content: ''; width: 32px; height: 1px; background: var(--rust2); }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 6vw, 80px); letter-spacing: 2px; line-height: 0.95; margin-bottom: 16px; }
+  .section-title em { font-style: normal; color: var(--rust2); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+  .srv-card { background: var(--dark); padding: 48px 40px; position: relative; overflow: hidden; transition: background .4s; }
+  .srv-card:hover { background: var(--stone); }
+  .srv-card::before { content: attr(data-num); position: absolute; top: -10px; right: -10px; font-family: 'Bebas Neue', sans-serif; font-size: 120px; line-height: 1; color: rgba(255,255,255,0.03); transition: color .4s; }
+  .srv-card:hover::before { color: rgba(201,75,26,0.08); }
+  .srv-icon { width: 56px; height: 56px; background: rgba(201,75,26,0.1); border: 1px solid rgba(201,75,26,0.25); display: flex; align-items: center; justify-content: center; margin-bottom: 32px; transition: background .4s, border-color .4s; }
+  .srv-card:hover .srv-icon { background: var(--rust); border-color: var(--rust); }
+  .srv-icon i { font-size: 22px; color: var(--rust2); transition: color .4s; }
+  .srv-card:hover .srv-icon i { color: #fff; }
+  .srv-name { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; text-transform: uppercase; }
+  .srv-list { list-style: none; margin-bottom: 32px; }
+  .srv-list li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--warm); display: flex; align-items: center; gap: 10px; }
+  .srv-list li:last-child { border-bottom: none; }
+  .srv-list li::before { content: '→'; color: var(--rust); font-size: 13px; }
+  .srv-price { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--cream); letter-spacing: 1px; }
+  .srv-price span { font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--muted); font-weight: 400; }
+  .srv-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; color: var(--rust2); border-bottom: 1px solid rgba(201,75,26,0.4); padding-bottom: 2px; cursor: pointer; background: none; border-left: none; border-right: none; border-top: none; transition: color .3s, border-color .3s; }
+  .srv-btn:hover { color: var(--cream); border-color: var(--cream); }
+  .complex-banner { margin-top: 2px; background: var(--rust); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px; padding: 48px 56px; position: relative; overflow: hidden; }
+  .complex-banner::before { content: 'КОМПЛЕКС'; position: absolute; right: -40px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', sans-serif; font-size: 160px; line-height: 1; color: rgba(0,0,0,0.15); pointer-events: none; }
+  .complex-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 2px; }
+  .complex-sub { font-size: 15px; color: rgba(255,255,255,0.85); margin-top: 6px; }
+  .complex-discount { background: rgba(0,0,0,0.2); padding: 4px 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-top: 10px; }
+  .complex-right { text-align: center; position: relative; z-index: 2; }
+  .complex-price { font-family: 'Bebas Neue', sans-serif; font-size: 60px; line-height: 1; white-space: nowrap; }
+  .complex-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--black); color: var(--cream); padding: 12px 28px; margin-top: 16px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border: none; cursor: pointer; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); transition: background .3s; }
+  .complex-cta:hover { background: var(--coal); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 64px; }
+  .why-features { display: flex; flex-direction: column; gap: 0; }
+  .why-item { display: flex; align-items: flex-start; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--border); transition: padding-left .4s; }
+  .why-item:hover { padding-left: 8px; }
+  .why-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: rgba(201,75,26,0.2); line-height: 1; flex-shrink: 0; width: 50px; transition: color .4s; }
+  .why-item:hover .why-num { color: var(--rust); }
+  .why-content h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .why-content p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .why-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 1px solid var(--border); }
+  .num-block { background: var(--coal); padding: 48px 36px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: background .4s; }
+  .num-block:hover { background: var(--stone); }
+  .num-val { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 0.9; color: var(--cream); letter-spacing: -2px; }
+  .num-val em { font-style: normal; color: var(--rust2); font-size: 48px; }
+  .num-desc { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 64px; border: 1px solid var(--border); background: var(--border); }
+  .step { background: var(--coal); padding: 48px 36px; position: relative; transition: background .4s; }
+  .step:hover { background: var(--stone); }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 100px; line-height: 0.85; color: rgba(255,255,255,0.04); position: absolute; top: 24px; right: 24px; transition: color .4s; }
+  .step:hover .step-num { color: rgba(201,75,26,0.1); }
+  .step-icon { width: 48px; height: 48px; border: 1px solid rgba(201,75,26,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: border-color .4s, background .4s; }
+  .step:hover .step-icon { border-color: var(--rust); background: rgba(201,75,26,0.1); }
+  .step-icon i { color: var(--rust2); font-size: 18px; }
+  .step h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .calc-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 64px; }
+  .calc-left h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 48px; }
+  .calc-field { margin-bottom: 32px; }
+  .calc-label { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; display: block; }
+  .calc-select { width: 100%; background: var(--coal); border: 1px solid var(--border); color: var(--cream); padding: 14px 18px; font-family: 'Barlow', sans-serif; font-size: 15px; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%237A736C'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; transition: border-color .3s; }
+  .calc-select:focus { outline: none; border-color: var(--rust); }
+  input[type="range"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 100%; height: 2px; background: var(--border); border-radius: 0; outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--rust2); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); cursor: pointer; }
+  input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; background: var(--rust2); border: none; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); cursor: pointer; }
+  .range-labels { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: var(--muted); }
+  .range-val { color: var(--rust2); font-weight: 700; }
+  .calc-check { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .calc-check input { display: none; }
+  .check-box { width: 20px; height: 20px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color .3s, background .3s; }
+  .calc-check input:checked ~ .check-box { background: var(--rust); border-color: var(--rust); }
+  .check-box i { font-size: 10px; color: #fff; display: none; }
+  .calc-check input:checked ~ .check-box i { display: block; }
+  .calc-check-text { font-size: 14px; color: var(--warm); }
+  .calc-right { background: var(--coal); border: 1px solid var(--border); padding: 48px; position: sticky; top: 100px; }
+  .calc-result-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .calc-result { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: var(--cream); letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+  .calc-result-sub { font-size: 12px; color: var(--muted); margin-bottom: 40px; }
+  .calc-divider { height: 1px; background: var(--border); margin-bottom: 32px; }
+  .breakdown-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .breakdown-item:last-of-type { border: none; margin-bottom: 32px; }
+  .breakdown-val { color: var(--cream); font-weight: 600; }
+  .calc-submit { width: 100%; background: var(--rust); color: #fff; border: none; cursor: pointer; padding: 18px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; font-family: 'Barlow', sans-serif; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); transition: background .3s, box-shadow .3s; }
+  .calc-submit:hover { background: var(--rust2); box-shadow: 0 0 40px rgba(232,93,32,0.3); }
+  .cta-section { background: var(--dark); padding: 120px 48px; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,75,26,0.12) 0%, transparent 70%); }
+  .cta-big { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 9vw, 120px); letter-spacing: 3px; line-height: 0.95; position: relative; z-index: 1; margin-bottom: 24px; }
+  .cta-sub { font-size: 18px; color: var(--warm); position: relative; z-index: 1; margin-bottom: 48px; }
+  .cta-phone { display: inline-flex; align-items: center; gap: 16px; background: var(--rust); color: #fff; text-decoration: none; padding: 22px 52px; font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 3px; position: relative; z-index: 1; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); transition: background .3s, box-shadow .3s, transform .2s; }
+  .cta-phone:hover { background: var(--rust2); box-shadow: 0 0 60px rgba(232,93,32,0.4); transform: scale(1.02); }
+  .cta-phone i { font-size: 28px; animation: ring 3s infinite; }
+  @keyframes ring { 0%,100%{transform:rotate(0)} 10%{transform:rotate(-20deg)} 20%{transform:rotate(20deg)} 30%{transform:rotate(0)} }
+  .cta-info { display: flex; align-items: center; gap: 48px; margin-top: 64px; position: relative; z-index: 1; }
+  .cta-info-item { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); }
+  .cta-info-item i { color: var(--rust2); }
+  .cta-divider-v { width: 1px; height: 32px; background: var(--border); }
+  footer { background: var(--black); border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-left { font-size: 13px; color: var(--muted); }
+  .footer-left strong { color: var(--warm); }
+  .footer-right { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+  .modal-bg { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .modal-bg.open { display: flex; }
+  .modal-box { background: var(--dark); border: 1px solid var(--border); padding: 56px 48px; max-width: 480px; width: 100%; position: relative; clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px)); animation: modalIn .4s cubic-bezier(.16,1,.3,1); }
+  @keyframes modalIn { from { opacity:0; transform: scale(.95) translateY(16px); } to { opacity:1; transform:none; } }
+  .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; transition: color .3s; }
+  .modal-close:hover { color: var(--cream); }
+  .modal-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust2); margin-bottom: 16px; }
+  .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 2px; margin-bottom: 32px; }
+  .modal-input { width: 100%; background: var(--coal); border: 1px solid var(--border); color: var(--cream); padding: 14px 18px; font-family: 'Barlow', sans-serif; font-size: 15px; margin-bottom: 14px; transition: border-color .3s; }
+  .modal-input:focus { outline: none; border-color: var(--rust); }
+  .modal-input::placeholder { color: var(--muted); }
+  textarea.modal-input { resize: none; }
+  .modal-submit { width: 100%; background: var(--rust); color: #fff; border: none; cursor: pointer; padding: 16px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; font-family: 'Barlow', sans-serif; margin-top: 8px; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); transition: background .3s; }
+  .modal-submit:hover { background: var(--rust2); }
+  .modal-note { font-size: 11px; color: var(--muted); margin-top: 12px; text-align: center; }
+  .mob-call { display: none; position: fixed; bottom: 24px; right: 24px; z-index: 90; width: 60px; height: 60px; background: var(--rust); clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); align-items: center; justify-content: center; text-decoration: none; color: #fff; font-size: 22px; animation: ring 3s infinite; box-shadow: 0 0 30px rgba(201,75,26,0.5); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: .1s; }
+  .reveal-d2 { transition-delay: .2s; }
+  .reveal-d3 { transition-delay: .3s; }
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 120px 32px 72px; justify-content: center; }
+    .why-grid { grid-template-columns: 1fr; }
+    .calc-wrap { grid-template-columns: 1fr; }
+    .calc-right { position: static; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .section { padding: 80px 32px; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .mob-call { display: flex; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .cta-info { flex-direction: column; gap: 20px; }
+    .cta-divider-v { display: none; }
+  }
+  @media (max-width: 640px) {
+    .hero-left { padding: 100px 24px 60px; }
+    .process-steps { grid-template-columns: 1fr; }
+    .num-block { min-height: 140px; }
+    .complex-banner { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
-<body class="bg-brand-dark text-white overflow-x-hidden">
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-effect transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center">
-                    <i class="fas fa-truck-monster text-white text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="font-display text-2xl font-bold text-white">СЕПТИК<span class="text-brand-orange">ПРО</span></h1>
-                    <p class="text-xs text-gray-400">Выгребные ямы под ключ</p>
-                </div>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#services" class="hover:text-brand-orange transition-colors font-semibold">Услуги</a>
-                <a href="#why-us" class="hover:text-brand-orange transition-colors font-semibold">Почему мы</a>
-                <a href="#process" class="hover:text-brand-orange transition-colors font-semibold">Как работаем</a>
-                <a href="#contacts" class="hover:text-brand-orange transition-colors font-semibold">Контакты</a>
-            </div>
-
-            <a href="tel:+79617733166" class="hidden md:flex items-center gap-2 bg-brand-orange px-6 py-3 rounded-full font-bold btn-glow">
-                <i class="fas fa-phone-alt phone-pulse"></i>
-                <span>+7 (961) 773-31-66</span>
-            </a>
-
-            <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-brand-gray absolute w-full">
-            <div class="flex flex-col p-6 gap-4">
-                <a href="#services" class="text-lg font-semibold">Услуги</a>
-                <a href="#why-us" class="text-lg font-semibold">Почему мы</a>
-                <a href="#process" class="text-lg font-semibold">Как работаем</a>
-                <a href="tel:+79617733166" class="text-brand-orange text-xl font-bold">+7 (961) 773-31-66</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-20">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-brand-orange rounded-full filter blur-3xl animate-pulse-slow"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
-        </div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8 animate-slide-up">
-                    <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/20">
-                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        <span class="text-sm font-semibold">Работаем 24/7 по всей области</span>
-                    </div>
-                    
-                    <h1 class="font-display text-5xl md:text-7xl font-black leading-tight">
-                        ВЫГРЕБНЫЕ <br>
-                        <span class="text-gradient">ЯМЫ</span> ПОД КЛЮЧ
-                    </h1>
-                    
-                    <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
-                        Приедем на тракторе, выкопаем, обустроим. Монтаж канализации и систем отопления как дополнительная услуга. Гарантия 5 лет!
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="tel:+79617733166" class="bg-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg btn-glow flex items-center justify-center gap-3">
-                            <i class="fas fa-phone-alt"></i>
-                            Позвонить сейчас
-                        </a>
-                        <a href="#calculator" class="border-2 border-white/30 hover:border-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:bg-white/5 flex items-center justify-center gap-3">
-                            <i class="fas fa-calculator"></i>
-                            Рассчитать стоимость
-                        </a>
-                    </div>
-
-                    <div class="flex items-center gap-8 pt-4">
-                        <div class="flex -space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-gray-600 border-2 border-brand-dark flex items-center justify-center text-xs font-bold">5★</div>
-                            <div class="w-12 h-12 rounded-full bg-gray-500 border-2 border-brand-dark flex items-center justify-center text-xs font-bold">5★</div>
-                            <div class="w-12 h-12 rounded-full bg-gray-400 border-2 border-brand-dark flex items-center justify-center text-xs font-bold">5★</div>
-                        </div>
-                        <div>
-                            <p class="font-bold text-lg">150+ довольных клиентов</p>
-                            <p class="text-sm text-gray-400">в этом сезоне</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative hidden md:block">
-                    <div class="relative z-10 animate-float">
-                        <div class="bg-gradient-to-br from-orange-500/20 to-red-600/20 rounded-3xl p-8 backdrop-blur-sm border border-white/10">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-white/5 p-4 rounded-2xl text-center">
-                                    <i class="fas fa-truck-monster text-4xl text-brand-orange mb-2 tractor-icon"></i>
-                                    <p class="font-bold">Трактор</p>
-                                    <p class="text-xs text-gray-400">Своя техника</p>
-                                </div>
-                                <div class="bg-white/5 p-4 rounded-2xl text-center">
-                                    <i class="fas fa-hard-hat text-4xl text-brand-orange mb-2"></i>
-                                    <p class="font-bold">Опыт 10+ лет</p>
-                                    <p class="text-xs text-gray-400">Работаем с 2014</p>
-                                </div>
-                                <div class="bg-white/5 p-4 rounded-2xl text-center">
-                                    <i class="fas fa-clock text-4xl text-brand-orange mb-2"></i>
-                                    <p class="font-bold">1-2 дня</p>
-                                    <p class="text-xs text-gray-400">Срок работы</p>
-                                </div>
-                                <div class="bg-white/5 p-4 rounded-2xl text-center">
-                                    <i class="fas fa-shield-alt text-4xl text-brand-orange mb-2"></i>
-                                    <p class="font-bold">Гарантия</p>
-                                    <p class="text-xs text-gray-400">5 лет</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute -inset-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-full opacity-20 filter blur-3xl animate-pulse"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#services" class="text-white/50 hover:text-white transition-colors">
-                <i class="fas fa-chevron-down text-3xl"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-brand-gray relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 scroll-reveal">
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">НАШИ <span class="text-brand-orange">УСЛУГИ</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Полный комплекс работ по обустройству выгребных ям и инженерных систем</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="service-card bg-brand-dark rounded-3xl overflow-hidden scroll-reveal">
-                    <div class="h-48 bg-gradient-to-br from-orange-600 to-red-700 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-truck-monster text-8xl text-white/20 absolute -right-4 -bottom-4"></i>
-                        <i class="fas fa-digging text-6xl text-white relative z-10"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="font-display text-2xl font-bold mb-3">Выгребные ямы</h3>
-                        <ul class="space-y-2 text-gray-400 mb-6">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Копка трактором</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Установка колец ЖБИ</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Гидроизоляция дна</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Монтаж крышки</li>
-                        </ul>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-brand-orange">от 25 000 ₽</span>
-                            <button onclick="openModal('Выгребная яма')" class="bg-white/10 hover:bg-brand-orange px-4 py-2 rounded-full transition-all">
-                                Заказать
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="service-card bg-brand-dark rounded-3xl overflow-hidden scroll-reveal" style="transition-delay: 0.1s;">
-                    <div class="h-48 bg-gradient-to-br from-blue-600 to-cyan-700 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-water text-8xl text-white/20 absolute -right-4 -bottom-4"></i>
-                        <i class="fas fa-pipe-curve text-6xl text-white relative z-10"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="font-display text-2xl font-bold mb-3">Канализация</h3>
-                        <ul class="space-y-2 text-gray-400 mb-6">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Прокладка труб</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Установка септиков</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Дренажные системы</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Подключение к сетям</li>
-                        </ul>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-brand-orange">от 15 000 ₽</span>
-                            <button onclick="openModal('Канализация')" class="bg-white/10 hover:bg-brand-orange px-4 py-2 rounded-full transition-all">
-                                Заказать
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="service-card bg-brand-dark rounded-3xl overflow-hidden scroll-reveal" style="transition-delay: 0.2s;">
-                    <div class="h-48 bg-gradient-to-br from-red-600 to-pink-700 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-fire text-8xl text-white/20 absolute -right-4 -bottom-4"></i>
-                        <i class="fas fa-fire-burner text-6xl text-white relative z-10"></i>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="font-display text-2xl font-bold mb-3">Отопление</h3>
-                        <ul class="space-y-2 text-gray-400 mb-6">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Монтаж котлов</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Радиаторное отопление</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Теплые полы</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Обвязка</li>
-                        </ul>
-                        <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-brand-orange">от 30 000 ₽</span>
-                            <button onclick="openModal('Отопление')" class="bg-white/10 hover:bg-brand-orange px-4 py-2 rounded-full transition-all">
-                                Заказать
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Complex Service -->
-            <div class="mt-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl p-8 md:p-12 scroll-reveal relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-                    <div class="text-center md:text-left">
-                        <h3 class="font-display text-3xl font-bold mb-2">КОМПЛЕКСНОЕ РЕШЕНИЕ</h3>
-                        <p class="text-white/90 text-lg">Выгребная яма + Канализация + Отопление</p>
-                        <p class="text-white/70 mt-2">Скидка 15% при заказе комплекса</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-5xl font-black mb-2">от 60 000 ₽</p>
-                        <button onclick="openModal('Комплексный заказ')" class="bg-white text-orange-600 px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform">
-                            Получить скидку
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Us -->
-    <section id="why-us" class="py-20 bg-brand-dark">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="scroll-reveal">
-                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
-                        ПОЧЕМУ <span class="text-brand-orange">МЫ?</span>
-                    </h2>
-                    <p class="text-gray-400 text-lg mb-8">
-                        Работаем профессионально, используем современную технику и качественные материалы. Ваш комфорт — наша задача №1.
-                    </p>
-
-                    <div class="space-y-6">
-                        <div class="flex gap-4 items-start group">
-                            <div class="w-14 h-14 bg-brand-orange/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-orange transition-colors">
-                                <i class="fas fa-tractor text-2xl text-brand-orange group-hover:text-white transition-colors"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-1">Своя техника</h4>
-                                <p class="text-gray-400">Не арендуем — значит дешевле для вас. Трактор с навесным оборудованием всегда готов к работе.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 items-start group">
-                            <div class="w-14 h-14 bg-brand-orange/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-orange transition-colors">
-                                <i class="fas fa-bolt text-2xl text-brand-orange group-hover:text-white transition-colors"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-1">Быстро</h4>
-                                <p class="text-gray-400">Выезд в день обращения. Работы выполняем за 1-2 дня в зависимости от объема.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 items-start group">
-                            <div class="w-14 h-14 bg-brand-orange/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-orange transition-colors">
-                                <i class="fas fa-file-contract text-2xl text-brand-orange group-hover:text-white transition-colors"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-1">Договор и гарантия</h4>
-                                <p class="text-gray-400">Официальный договор, гарантия на работы 5 лет. Работаем по всей области.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative scroll-reveal">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-4 mt-8">
-                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
-                                <div class="text-4xl font-black text-brand-orange mb-2">10+</div>
-                                <div class="text-sm text-gray-400">Лет опыта</div>
-                            </div>
-                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
-                                <div class="text-4xl font-black text-brand-orange mb-2">500+</div>
-                                <div class="text-sm text-gray-400">Объектов</div>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
-                                <div class="text-4xl font-black text-brand-orange mb-2">24/7</div>
-                                <div class="text-sm text-gray-400">Работаем</div>
-                            </div>
-                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
-                                <div class="text-4xl font-black text-brand-orange mb-2">5</div>
-                                <div class="text-sm text-gray-400">Лет гарантии</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section id="process" class="py-20 bg-brand-gray">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 scroll-reveal">
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">КАК МЫ <span class="text-brand-orange">РАБОТАЕМ</span></h2>
-                <p class="text-gray-400">4 простых шага до готовой системы</p>
-            </div>
-
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="relative scroll-reveal">
-                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
-                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">1</div>
-                        <h3 class="font-bold text-xl mb-2">Звонок</h3>
-                        <p class="text-gray-400 text-sm">Вы звоните или пишите, мы консультируем и договариваемся о выезде</p>
-                    </div>
-                    <div class="hidden md:block absolute top-1/2 -right-4 w-full h-0.5 bg-brand-orange/30 -z-0 transform -translate-y-1/2"></div>
-                </div>
-
-                <div class="relative scroll-reveal" style="transition-delay: 0.1s;">
-                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
-                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">2</div>
-                        <h3 class="font-bold text-xl mb-2">Выезд</h3>
-                        <p class="text-gray-400 text-sm">Приезжаем на объект, оцениваем работы, фиксируем цену в договоре</p>
-                    </div>
-                    <div class="hidden md:block absolute top-1/2 -right-4 w-full h-0.5 bg-brand-orange/30 -z-0 transform -translate-y-1/2"></div>
-                </div>
-
-                <div class="relative scroll-reveal" style="transition-delay: 0.2s;">
-                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
-                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">3</div>
-                        <h3 class="font-bold text-xl mb-2">Работа</h3>
-                        <p class="text-gray-400 text-sm">Выполняем все работы качественно и в срок, используя свою технику</p>
-                    </div>
-                    <div class="hidden md:block absolute top-1/2 -right-4 w-full h-0.5 bg-brand-orange/30 -z-0 transform -translate-y-1/2"></div>
-                </div>
-
-                <div class="relative scroll-reveal" style="transition-delay: 0.3s;">
-                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
-                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">4</div>
-                        <h3 class="font-bold text-xl mb-2">Сдача</h3>
-                        <p class="text-gray-400 text-sm">Проверка, подписание акта, оплата. Выдаем гарантийный талон</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calculator -->
-    <section id="calculator" class="py-20 bg-brand-dark relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-3xl mx-auto bg-brand-gray rounded-3xl p-8 md:p-12 shadow-2xl scroll-reveal">
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-center mb-8">РАССЧИТАТЬ <span class="text-brand-orange">СТОИМОСТЬ</span></h2>
-                
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-gray-300">Тип работы</label>
-                        <select id="calcType" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none transition-colors">
-                            <option value="25000">Выгребная яма (стандарт)</option>
-                            <option value="35000">Выгребная яма (септик)</option>
-                            <option value="15000">Канализация (простая)</option>
-                            <option value="30000">Канализация (сложная)</option>
-                            <option value="30000">Отопление (базовое)</option>
-                            <option value="60000">Комплекс (всё включено)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold mb-2 text-gray-300">Глубина ямы (колец)</label>
-                        <input type="range" id="calcDepth" min="2" max="6" value="3" class="w-full accent-brand-orange" oninput="updateCalc()">
-                        <div class="flex justify-between text-sm text-gray-400 mt-1">
-                            <span>2 кольца</span>
-                            <span id="depthValue" class="text-brand-orange font-bold">3 кольца</span>
-                            <span>6 колец</span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3">
-                        <input type="checkbox" id="calcUrgent" class="w-5 h-5 accent-brand-orange rounded" onchange="updateCalc()">
-                        <label for="calcUrgent" class="text-gray-300">Срочный выезд (в течение 24 часов) +20%</label>
-                    </div>
-
-                    <div class="border-t border-white/10 pt-6 mt-6">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="text-xl text-gray-400">Примерная стоимость:</span>
-                            <span id="calcTotal" class="text-4xl font-black text-brand-orange">75 000 ₽</span>
-                        </div>
-                        
-                        <button onclick="openModal('Расчет калькулятора')" class="w-full bg-brand-orange text-white py-4 rounded-xl font-bold text-lg btn-glow">
-                            Получить точный расчет
-                        </button>
-                        <p class="text-center text-sm text-gray-500 mt-3">*Точная цена после осмотра объекта</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacts / CTA -->
-    <section id="contacts" class="py-20 bg-gradient-to-br from-orange-600 to-red-700 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
-        
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <h2 class="font-display text-4xl md:text-6xl font-black mb-6">ЗВОНИТЕ ПРЯМО СЕЙЧАС!</h2>
-            <p class="text-xl md:text-2xl mb-8 text-white/90">Бесплатная консультация и выезд на объект</p>
-            
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
-                <a href="tel:+79617733166" class="bg-white text-orange-600 px-10 py-5 rounded-full font-black text-2xl md:text-3xl hover:scale-105 transition-transform shadow-2xl flex items-center gap-4">
-                    <i class="fas fa-phone-alt phone-pulse"></i>
-                    +7 (961) 773-31-66
-                </a>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-left">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                    <i class="fas fa-map-marker-alt text-3xl mb-3"></i>
-                    <h4 class="font-bold text-lg mb-1">Район работы</h4>
-                    <p class="text-white/80">Вся область и пригороды</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                    <i class="fas fa-clock text-3xl mb-3"></i>
-                    <h4 class="font-bold text-lg mb-1">График</h4>
-                    <p class="text-white/80">Круглосуточно, без выходных</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                    <i class="fas fa-whatsapp text-3xl mb-3"></i>
-                    <h4 class="font-bold text-lg mb-1">WhatsApp</h4>
-                    <p class="text-white/80">Пишите в любое время</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-brand-dark border-t border-white/10 py-8">
-        <div class="container mx-auto px-6 text-center text-gray-500">
-            <p class="mb-2">© 2026 СептикПро. Все права защищены.</p>
-            <p class="text-sm">ИНН: XXX XXX XXX XXX | ОГРН: XXX XXX XXX XXXX</p>
-        </div>
-    </footer>
-
-    <!-- Modal -->
-    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-brand-gray rounded-3xl p-8 max-w-md w-full relative animate-slide-up">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <h3 class="font-display text-2xl font-bold mb-2">Оставить заявку</h3>
-            <p class="text-gray-400 mb-6" id="modalService">Мы перезвоним в течение 15 минут</p>
-            
-            <form onsubmit="submitForm(event)" class="space-y-4">
-                <input type="text" placeholder="Ваше имя" required class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none">
-                <input type="tel" placeholder="Телефон" required class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none">
-                <textarea placeholder="Комментарий (необязательно)" rows="3" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none"></textarea>
-                
-                <button type="submit" class="w-full bg-brand-orange text-white py-4 rounded-xl font-bold text-lg btn-glow">
-                    Отправить заявку
-                </button>
-                
-                <p class="text-xs text-gray-500 text-center">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-            </form>
-        </div>
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="logo-mark">СП</div>
+    <div>
+      <div class="logo-text">СЕПТИК<span>ПРО</span></div>
+      <div class="logo-sub">Выгребные ямы под ключ</div>
     </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#why-us">О нас</a></li>
+    <li><a href="#process">Процесс</a></li>
+    <li><a href="#calculator">Стоимость</a></li>
+    <li><a class="nav-cta" href="tel:+79617733166"><i class="fas fa-phone-alt"></i> +7 (961) 773-31-66</a></li>
+  </ul>
+</nav>
 
-    <!-- Fixed Call Button Mobile -->
-    <a href="tel:+79617733166" class="md:hidden fixed bottom-6 right-6 bg-brand-orange w-16 h-16 rounded-full flex items-center justify-center shadow-2xl z-40 btn-glow phone-pulse">
-        <i class="fas fa-phone-alt text-2xl"></i>
-    </a>
+<section class="hero">
+  <div class="hero-bg-text">СЕПТИК</div>
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Работаем 24/7 · Выезд в день обращения
+    </div>
+    <h1 class="hero-title">
+      <span class="line l1"><span class="inner">ВЫГРЕБНЫЕ</span></span>
+      <span class="line l2"><span class="inner"><em>ЯМЫ</em></span></span>
+      <span class="line l3"><span class="inner">ПОД КЛЮЧ</span></span>
+    </h1>
+    <p class="hero-desc">
+      Приедем на тракторе, выкопаем, обустроим. Монтаж канализации и систем отопления. Официальный договор, гарантия&nbsp;5&nbsp;лет.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="tel:+79617733166"><i class="fas fa-phone-alt"></i> Позвонить</a>
+      <a class="btn-ghost" href="#calculator">Рассчитать стоимость <i class="fas fa-arrow-right" style="font-size:11px"></i></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-pill"><div><div class="stat-num">10+</div><div class="stat-label">Лет на рынке</div></div></div>
+      <div class="stat-pill"><div><div class="stat-num">500+</div><div class="stat-label">Объектов сдано</div></div></div>
+      <div class="stat-pill"><div><div class="stat-num">5</div><div class="stat-label">Лет гарантии</div></div></div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Scroll Reveal
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
+<div class="strip">
+  <div class="strip-inner" id="strip">
+    <span class="strip-item"><i class="fas fa-tractor"></i> Своя техника</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-bolt"></i> Выезд в день обращения</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-shield-alt"></i> Гарантия 5 лет</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-file-contract"></i> Официальный договор</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-clock"></i> Работаем 24/7</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-map-marker-alt"></i> Вся область</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-tractor"></i> Своя техника</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-bolt"></i> Выезд в день обращения</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-shield-alt"></i> Гарантия 5 лет</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-file-contract"></i> Официальный договор</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-clock"></i> Работаем 24/7</span><span class="strip-dot"></span>
+    <span class="strip-item"><i class="fas fa-map-marker-alt"></i> Вся область</span><span class="strip-dot"></span>
+  </div>
+</div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+<section id="services" class="section section-dark">
+  <div class="section-label reveal">Наши услуги</div>
+  <h2 class="section-title reveal">ПОЛНЫЙ СПЕКТР<br><em>РАБОТ</em></h2>
+  <div class="services-grid reveal">
+    <div class="srv-card" data-num="01">
+      <div class="srv-icon"><i class="fas fa-digging"></i></div>
+      <div class="srv-name">Выгребные ямы</div>
+      <ul class="srv-list">
+        <li>Копка экскаватором / трактором</li>
+        <li>Установка колец ЖБИ</li>
+        <li>Гидроизоляция дна и стен</li>
+        <li>Монтаж крышки и люка</li>
+        <li>Засыпка и благоустройство</li>
+      </ul>
+      <div class="srv-price">от 25 000 ₽<br><span>финальная цена — после осмотра</span></div>
+      <button class="srv-btn" onclick="openModal('Выгребная яма')">Оставить заявку →</button>
+    </div>
+    <div class="srv-card" data-num="02">
+      <div class="srv-icon"><i class="fas fa-water"></i></div>
+      <div class="srv-name">Канализация</div>
+      <ul class="srv-list">
+        <li>Прокладка наружных трубопроводов</li>
+        <li>Установка септиков под ключ</li>
+        <li>Дренажные системы</li>
+        <li>Подключение к центральным сетям</li>
+        <li>Внутренняя разводка</li>
+      </ul>
+      <div class="srv-price">от 15 000 ₽<br><span>финальная цена — после осмотра</span></div>
+      <button class="srv-btn" onclick="openModal('Канализация')">Оставить заявку →</button>
+    </div>
+    <div class="srv-card" data-num="03">
+      <div class="srv-icon"><i class="fas fa-fire-burner"></i></div>
+      <div class="srv-name">Отопление</div>
+      <ul class="srv-list">
+        <li>Монтаж котлов всех типов</li>
+        <li>Радиаторное отопление</li>
+        <li>Тёплые полы</li>
+        <li>Обвязка котельной</li>
+        <li>Пуско-наладка</li>
+      </ul>
+      <div class="srv-price">от 30 000 ₽<br><span>финальная цена — после осмотра</span></div>
+      <button class="srv-btn" onclick="openModal('Отопление')">Оставить заявку →</button>
+    </div>
+  </div>
+  <div class="complex-banner reveal">
+    <div>
+      <div class="complex-title">Комплексное решение</div>
+      <div class="complex-sub">Выгребная яма + Канализация + Отопление</div>
+      <div class="complex-discount"><i class="fas fa-tag"></i> Скидка 15% при заказе комплекса</div>
+    </div>
+    <div class="complex-right">
+      <div class="complex-price">от 60 000 ₽</div>
+      <button class="complex-cta" onclick="openModal('Комплексный заказ')">Получить скидку →</button>
+    </div>
+  </div>
+</section>
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+<section id="why-us" class="section section-coal">
+  <div class="section-label reveal">Наши преимущества</div>
+  <h2 class="section-title reveal">ПОЧЕМУ<br><em>МЫ?</em></h2>
+  <div class="why-grid">
+    <div class="why-features reveal">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div class="why-content">
+          <h4>Своя техника — без посредников</h4>
+          <p>Не арендуем оборудование, поэтому цены ниже. Трактор и экскаватор всегда готовы к выезду без дополнительного ожидания.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div class="why-content">
+          <h4>Выезд в день обращения</h4>
+          <p>Принимаем заявки круглосуточно. Приедем на объект в удобное время, оценим фронт работ и зафиксируем цену в договоре.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div class="why-content">
+          <h4>Официальный договор и гарантия</h4>
+          <p>Все работы оформляются договором. После сдачи объекта выдаём гарантийный талон на 5 лет — так вы защищены юридически.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-numbers reveal reveal-d2">
+      <div class="num-block"><div class="num-val" data-target="10">0<em>+</em></div><div class="num-desc">Лет опыта</div></div>
+      <div class="num-block"><div class="num-val" data-target="500">0<em>+</em></div><div class="num-desc">Объектов</div></div>
+      <div class="num-block"><div class="num-val">24<em>/7</em></div><div class="num-desc">Работаем</div></div>
+      <div class="num-block"><div class="num-val">5<em>лет</em></div><div class="num-desc">Гарантии</div></div>
+    </div>
+  </div>
+</section>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-brand-dark/95', 'shadow-lg');
-            } else {
-                navbar.classList.remove('bg-brand-dark/95', 'shadow-lg');
-            }
-        });
+<section id="process" class="section section-dark">
+  <div class="section-label reveal">Как мы работаем</div>
+  <h2 class="section-title reveal">4 ШАГА ДО<br><em>РЕЗУЛЬТАТА</em></h2>
+  <div class="process-steps reveal">
+    <div class="step"><div class="step-num">01</div><div class="step-icon"><i class="fas fa-phone-alt"></i></div><h3>Звонок</h3><p>Звоните или пишите в любое время. Ответим, проконсультируем и согласуем дату выезда.</p></div>
+    <div class="step"><div class="step-num">02</div><div class="step-icon"><i class="fas fa-car"></i></div><h3>Выезд</h3><p>Приезжаем на объект, оцениваем условия работы, фиксируем итоговую стоимость в договоре.</p></div>
+    <div class="step"><div class="step-num">03</div><div class="step-icon"><i class="fas fa-tractor"></i></div><h3>Работа</h3><p>Выполняем весь объём работ в срок 1–2 дня, используя собственную технику и материалы.</p></div>
+    <div class="step"><div class="step-num">04</div><div class="step-icon"><i class="fas fa-file-signature"></i></div><h3>Сдача</h3><p>Проверяем качество, подписываем акт, получаете гарантийный талон — всё, система готова.</p></div>
+  </div>
+</section>
 
-        // Mobile menu
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
+<section id="calculator" class="section section-coal">
+  <div class="section-label reveal">Стоимость</div>
+  <h2 class="section-title reveal">КАЛЬКУЛЯТОР<br><em>ЦЕНЫ</em></h2>
+  <div class="calc-wrap">
+    <div class="calc-left reveal">
+      <h3>Настройте параметры — получите предварительный расчёт</h3>
+      <div class="calc-field">
+        <label class="calc-label">Тип работы</label>
+        <select class="calc-select" id="calcType" onchange="updateCalc()">
+          <option value="25000">Выгребная яма (стандарт)</option>
+          <option value="35000">Выгребная яма (септик)</option>
+          <option value="15000">Канализация — простая</option>
+          <option value="30000">Канализация — сложная</option>
+          <option value="30000">Отопление — базовое</option>
+          <option value="60000">Комплекс (всё включено)</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label class="calc-label">Глубина ямы — <span class="range-val" id="depthLabel">3 кольца</span></label>
+        <input type="range" id="calcDepth" min="2" max="6" value="3" oninput="updateCalc()">
+        <div class="range-labels"><span>2 кольца</span><span>6 колец</span></div>
+      </div>
+      <div class="calc-field">
+        <label class="calc-check">
+          <input type="checkbox" id="calcUrgent" onchange="updateCalc()">
+          <div class="check-box"><i class="fas fa-check"></i></div>
+          <span class="calc-check-text">Срочный выезд (до 24 ч) — <strong style="color:var(--rust2)">+20%</strong></span>
+        </label>
+      </div>
+    </div>
+    <div class="calc-right reveal reveal-d2">
+      <div class="calc-result-label">Примерная стоимость</div>
+      <div class="calc-result" id="calcTotal">25 000 ₽</div>
+      <div class="calc-result-sub">*точная цена после осмотра объекта</div>
+      <div class="calc-divider"></div>
+      <div class="breakdown-item"><span>Базовая стоимость</span><span class="breakdown-val" id="brkBase">25 000 ₽</span></div>
+      <div class="breakdown-item"><span>Доп. кольца</span><span class="breakdown-val" id="brkRings">—</span></div>
+      <div class="breakdown-item"><span>Срочность</span><span class="breakdown-val" id="brkUrgent">—</span></div>
+      <button class="calc-submit" onclick="openModal('Расчёт из калькулятора')">Получить точный расчёт</button>
+    </div>
+  </div>
+</section>
 
-        // Calculator
-        function updateCalc() {
-            const type = parseInt(document.getElementById('calcType').value);
-            const depth = parseInt(document.getElementById('calcDepth').value);
-            const urgent = document.getElementById('calcUrgent').checked;
-            
-            document.getElementById('depthValue').textContent = depth + ' кольца';
-            
-            let total = type;
-            if (depth > 3) total += (depth - 3) * 5000;
-            if (urgent) total *= 1.2;
-            
-            document.getElementById('calcTotal').textContent = Math.round(total).toLocaleString() + ' ₽';
-        }
+<section id="contacts" class="cta-section">
+  <div class="section-label reveal" style="align-self:center">Связаться с нами</div>
+  <h2 class="cta-big reveal">ЗВОНИТЕ<br>ПРЯМО<br>СЕЙЧАС</h2>
+  <p class="cta-sub reveal">Бесплатная консультация. Выезд в день обращения.</p>
+  <a class="cta-phone reveal" href="tel:+79617733166"><i class="fas fa-phone-alt"></i> +7 (961) 773-31-66</a>
+  <div class="cta-info reveal">
+    <div class="cta-info-item"><i class="fas fa-map-marker-alt"></i> Вся область и пригороды</div>
+    <div class="cta-divider-v"></div>
+    <div class="cta-info-item"><i class="fas fa-clock"></i> Круглосуточно, без выходных</div>
+    <div class="cta-divider-v"></div>
+    <div class="cta-info-item"><i class="fab fa-whatsapp"></i> WhatsApp — в любое время</div>
+  </div>
+</section>
 
-        // Modal
-        function openModal(service) {
-            document.getElementById('modalService').textContent = service;
-            document.getElementById('modal').classList.remove('hidden');
-            document.getElementById('modal').classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
+<footer>
+  <div class="footer-left">© 2026 <strong>СептикПро</strong> — Все права защищены<br>ИНН: XXX XXX XXX XXX · ОГРН: XXX XXX XXX XXXX</div>
+  <div class="footer-right">Работаем с 2014 года</div>
+</footer>
 
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-            document.getElementById('modal').classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
+<a class="mob-call" href="tel:+79617733166"><i class="fas fa-phone-alt"></i></a>
 
-        function submitForm(e) {
-            e.preventDefault();
-            alert('Заявка отправлена! Мы перезвоним вам в ближайшее время.');
-            closeModal();
-        }
+<div class="modal-bg" id="modal" onclick="handleModalClick(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <div class="modal-label">Оставить заявку</div>
+    <div class="modal-title" id="modalTitle">Выгребная яма</div>
+    <input class="modal-input" type="text" placeholder="Ваше имя" id="mName">
+    <input class="modal-input" type="tel" placeholder="Номер телефона" id="mPhone">
+    <textarea class="modal-input" rows="3" placeholder="Комментарий (необязательно)" id="mComment"></textarea>
+    <button class="modal-submit" onclick="submitForm()">Отправить заявку</button>
+    <p class="modal-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+  </div>
+</div>
 
-        // Close modal on outside click
-        document.getElementById('modal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('modal')) closeModal();
-        });
-
-        // Initialize calculator
-        updateCalc();
-    </script>
+<script>
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+  function animRing() { rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
+  animRing();
+  document.querySelectorAll('a,button,.srv-card,.why-item,.step,.num-block').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.style.width='20px'; cur.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; ring.style.opacity='.4'; });
+    el.addEventListener('mouseleave', () => { cur.style.width='12px'; cur.style.height='12px'; ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='1'; });
+  });
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  const numObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.dataset.target);
+        if(!target) return;
+        let val = 0;
+        const step = target / 50;
+        const t = setInterval(() => {
+          val = Math.min(val + step, target);
+          el.childNodes[0].nodeValue = Math.floor(val);
+          if(val >= target) clearInterval(t);
+        }, 30);
+        numObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => numObs.observe(el));
+  function updateCalc() {
+    const base = parseInt(document.getElementById('calcType').value);
+    const depth = parseInt(document.getElementById('calcDepth').value);
+    const urgent = document.getElementById('calcUrgent').checked;
+    document.getElementById('depthLabel').textContent = depth + ' кольца';
+    const rings = depth > 3 ? (depth - 3) * 5000 : 0;
+    let total = base + rings;
+    const urgentAdd = urgent ? Math.round(total * 0.2) : 0;
+    total += urgentAdd;
+    document.getElementById('calcTotal').textContent = Math.round(total).toLocaleString('ru') + ' ₽';
+    document.getElementById('brkBase').textContent = base.toLocaleString('ru') + ' ₽';
+    document.getElementById('brkRings').textContent = rings > 0 ? '+' + rings.toLocaleString('ru') + ' ₽' : '—';
+    document.getElementById('brkUrgent').textContent = urgentAdd > 0 ? '+' + urgentAdd.toLocaleString('ru') + ' ₽' : '—';
+  }
+  updateCalc();
+  function openModal(service) {
+    document.getElementById('modalTitle').textContent = service;
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleModalClick(e) { if(e.target === document.getElementById('modal')) closeModal(); }
+  function submitForm() {
+    const name = document.getElementById('mName').value;
+    const phone = document.getElementById('mPhone').value;
+    if(!name || !phone) { alert('Пожалуйста, заполните имя и телефон'); return; }
+    closeModal();
+    setTimeout(() => alert('Заявка принята! Мы перезвоним в ближайшее время.'), 200);
+  }
+</script>
 </body>
 </html>
