@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выгребные Ямы | Монтаж Канализации и Отопления</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'display': ['Oswald', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-orange': '#FF6B35',
+                        'brand-dark': '#1A1A2E',
+                        'brand-gray': '#16213E',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-bg {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(247, 147, 30, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+        }
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        }
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(255, 107, 53, 0.8);
+            transform: scale(1.05);
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .phone-pulse {
+            animation: phonePulse 2s infinite;
+        }
+        @keyframes phonePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .tractor-icon {
+            animation: drive 3s ease-in-out infinite;
+        }
+        @keyframes drive {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="bg-brand-dark text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center">
+                    <i class="fas fa-truck-monster text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-display text-2xl font-bold text-white">СЕПТИК<span class="text-brand-orange">ПРО</span></h1>
+                    <p class="text-xs text-gray-400">Выгребные ямы под ключ</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#services" class="hover:text-brand-orange transition-colors font-semibold">Услуги</a>
+                <a href="#why-us" class="hover:text-brand-orange transition-colors font-semibold">Почему мы</a>
+                <a href="#process" class="hover:text-brand-orange transition-colors font-semibold">Как работаем</a>
+                <a href="#contacts" class="hover:text-brand-orange transition-colors font-semibold">Контакты</a>
+            </div>
+
+            <a href="tel:+79617733166" class="hidden md:flex items-center gap-2 bg-brand-orange px-6 py-3 rounded-full font-bold btn-glow">
+                <i class="fas fa-phone-alt phone-pulse"></i>
+                <span>+7 (961) 773-31-66</span>
+            </a>
+
+            <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-gray absolute w-full">
+            <div class="flex flex-col p-6 gap-4">
+                <a href="#services" class="text-lg font-semibold">Услуги</a>
+                <a href="#why-us" class="text-lg font-semibold">Почему мы</a>
+                <a href="#process" class="text-lg font-semibold">Как работаем</a>
+                <a href="tel:+79617733166" class="text-brand-orange text-xl font-bold">+7 (961) 773-31-66</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-brand-orange rounded-full filter blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 animate-slide-up">
+                    <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/20">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="text-sm font-semibold">Работаем 24/7 по всей области</span>
+                    </div>
+                    
+                    <h1 class="font-display text-5xl md:text-7xl font-black leading-tight">
+                        ВЫГРЕБНЫЕ <br>
+                        <span class="text-gradient">ЯМЫ</span> ПОД КЛЮЧ
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
+                        Приедем на тракторе, выкопаем, обустроим. Монтаж канализации и систем отопления как дополнительная услуга. Гарантия 5 лет!
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="tel:+79617733166" class="bg-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg btn-glow flex items-center justify-center gap-3">
+                            <i class="fas fa-phone-alt"></i>
+                            Позвонить сейчас
+                        </a>
+                        <a href="#calculator" class="border-2 border-white/30 hover:border-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:bg-white/5 flex items-center justify-center gap-3">
+                            <i class="fas fa-calculator"></i>
+                            Рассчитать стоимость
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-8 pt-4">
+                        <div class="flex -space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gray-600 border-2 border-brand-dark flex items-center justify-center text-xs font-bold">5★</div>
+                            <div class="w-12 h-12 rounded-full bg-gray-500 border-2 border-brand-dark flex items-center justify-center text-xs font-bold">5★</div>
+                            <div class="w-12 h-12 rounded-full bg-gray-400 border-2 border-brand-dark flex items-center justify-center text-xs font-bold">5★</div>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">150+ довольных клиентов</p>
+                            <p class="text-sm text-gray-400">в этом сезоне</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative hidden md:block">
+                    <div class="relative z-10 animate-float">
+                        <div class="bg-gradient-to-br from-orange-500/20 to-red-600/20 rounded-3xl p-8 backdrop-blur-sm border border-white/10">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white/5 p-4 rounded-2xl text-center">
+                                    <i class="fas fa-truck-monster text-4xl text-brand-orange mb-2 tractor-icon"></i>
+                                    <p class="font-bold">Трактор</p>
+                                    <p class="text-xs text-gray-400">Своя техника</p>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-2xl text-center">
+                                    <i class="fas fa-hard-hat text-4xl text-brand-orange mb-2"></i>
+                                    <p class="font-bold">Опыт 10+ лет</p>
+                                    <p class="text-xs text-gray-400">Работаем с 2014</p>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-2xl text-center">
+                                    <i class="fas fa-clock text-4xl text-brand-orange mb-2"></i>
+                                    <p class="font-bold">1-2 дня</p>
+                                    <p class="text-xs text-gray-400">Срок работы</p>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-2xl text-center">
+                                    <i class="fas fa-shield-alt text-4xl text-brand-orange mb-2"></i>
+                                    <p class="font-bold">Гарантия</p>
+                                    <p class="text-xs text-gray-400">5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -inset-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-full opacity-20 filter blur-3xl animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#services" class="text-white/50 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-brand-gray relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">НАШИ <span class="text-brand-orange">УСЛУГИ</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Полный комплекс работ по обустройству выгребных ям и инженерных систем</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-brand-dark rounded-3xl overflow-hidden scroll-reveal">
+                    <div class="h-48 bg-gradient-to-br from-orange-600 to-red-700 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-truck-monster text-8xl text-white/20 absolute -right-4 -bottom-4"></i>
+                        <i class="fas fa-digging text-6xl text-white relative z-10"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-display text-2xl font-bold mb-3">Выгребные ямы</h3>
+                        <ul class="space-y-2 text-gray-400 mb-6">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Копка трактором</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Установка колец ЖБИ</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Гидроизоляция дна</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Монтаж крышки</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-brand-orange">от 25 000 ₽</span>
+                            <button onclick="openModal('Выгребная яма')" class="bg-white/10 hover:bg-brand-orange px-4 py-2 rounded-full transition-all">
+                                Заказать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-brand-dark rounded-3xl overflow-hidden scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-cyan-700 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-water text-8xl text-white/20 absolute -right-4 -bottom-4"></i>
+                        <i class="fas fa-pipe-curve text-6xl text-white relative z-10"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-display text-2xl font-bold mb-3">Канализация</h3>
+                        <ul class="space-y-2 text-gray-400 mb-6">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Прокладка труб</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Установка септиков</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Дренажные системы</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Подключение к сетям</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-brand-orange">от 15 000 ₽</span>
+                            <button onclick="openModal('Канализация')" class="bg-white/10 hover:bg-brand-orange px-4 py-2 rounded-full transition-all">
+                                Заказать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-brand-dark rounded-3xl overflow-hidden scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="h-48 bg-gradient-to-br from-red-600 to-pink-700 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-fire text-8xl text-white/20 absolute -right-4 -bottom-4"></i>
+                        <i class="fas fa-fire-burner text-6xl text-white relative z-10"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-display text-2xl font-bold mb-3">Отопление</h3>
+                        <ul class="space-y-2 text-gray-400 mb-6">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Монтаж котлов</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Радиаторное отопление</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Теплые полы</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-orange"></i> Обвязка</li>
+                        </ul>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-brand-orange">от 30 000 ₽</span>
+                            <button onclick="openModal('Отопление')" class="bg-white/10 hover:bg-brand-orange px-4 py-2 rounded-full transition-all">
+                                Заказать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complex Service -->
+            <div class="mt-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl p-8 md:p-12 scroll-reveal relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="text-center md:text-left">
+                        <h3 class="font-display text-3xl font-bold mb-2">КОМПЛЕКСНОЕ РЕШЕНИЕ</h3>
+                        <p class="text-white/90 text-lg">Выгребная яма + Канализация + Отопление</p>
+                        <p class="text-white/70 mt-2">Скидка 15% при заказе комплекса</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl font-black mb-2">от 60 000 ₽</p>
+                        <button onclick="openModal('Комплексный заказ')" class="bg-white text-orange-600 px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform">
+                            Получить скидку
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us" class="py-20 bg-brand-dark">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">
+                        ПОЧЕМУ <span class="text-brand-orange">МЫ?</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-8">
+                        Работаем профессионально, используем современную технику и качественные материалы. Ваш комфорт — наша задача №1.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4 items-start group">
+                            <div class="w-14 h-14 bg-brand-orange/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-orange transition-colors">
+                                <i class="fas fa-tractor text-2xl text-brand-orange group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-1">Своя техника</h4>
+                                <p class="text-gray-400">Не арендуем — значит дешевле для вас. Трактор с навесным оборудованием всегда готов к работе.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start group">
+                            <div class="w-14 h-14 bg-brand-orange/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-orange transition-colors">
+                                <i class="fas fa-bolt text-2xl text-brand-orange group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-1">Быстро</h4>
+                                <p class="text-gray-400">Выезд в день обращения. Работы выполняем за 1-2 дня в зависимости от объема.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start group">
+                            <div class="w-14 h-14 bg-brand-orange/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-orange transition-colors">
+                                <i class="fas fa-file-contract text-2xl text-brand-orange group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-1">Договор и гарантия</h4>
+                                <p class="text-gray-400">Официальный договор, гарантия на работы 5 лет. Работаем по всей области.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative scroll-reveal">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 mt-8">
+                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
+                                <div class="text-4xl font-black text-brand-orange mb-2">10+</div>
+                                <div class="text-sm text-gray-400">Лет опыта</div>
+                            </div>
+                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
+                                <div class="text-4xl font-black text-brand-orange mb-2">500+</div>
+                                <div class="text-sm text-gray-400">Объектов</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
+                                <div class="text-4xl font-black text-brand-orange mb-2">24/7</div>
+                                <div class="text-sm text-gray-400">Работаем</div>
+                            </div>
+                            <div class="bg-brand-gray p-6 rounded-2xl text-center transform hover:scale-105 transition-transform">
+                                <div class="text-4xl font-black text-brand-orange mb-2">5</div>
+                                <div class="text-sm text-gray-400">Лет гарантии</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="py-20 bg-brand-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">КАК МЫ <span class="text-brand-orange">РАБОТАЕМ</span></h2>
+                <p class="text-gray-400">4 простых шага до готовой системы</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="relative scroll-reveal">
+                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
+                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">1</div>
+                        <h3 class="font-bold text-xl mb-2">Звонок</h3>
+                        <p class="text-gray-400 text-sm">Вы звоните или пишите, мы консультируем и договариваемся о выезде</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-4 w-full h-0.5 bg-brand-orange/30 -z-0 transform -translate-y-1/2"></div>
+                </div>
+
+                <div class="relative scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
+                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">2</div>
+                        <h3 class="font-bold text-xl mb-2">Выезд</h3>
+                        <p class="text-gray-400 text-sm">Приезжаем на объект, оцениваем работы, фиксируем цену в договоре</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-4 w-full h-0.5 bg-brand-orange/30 -z-0 transform -translate-y-1/2"></div>
+                </div>
+
+                <div class="relative scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
+                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">3</div>
+                        <h3 class="font-bold text-xl mb-2">Работа</h3>
+                        <p class="text-gray-400 text-sm">Выполняем все работы качественно и в срок, используя свою технику</p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-4 w-full h-0.5 bg-brand-orange/30 -z-0 transform -translate-y-1/2"></div>
+                </div>
+
+                <div class="relative scroll-reveal" style="transition-delay: 0.3s;">
+                    <div class="bg-brand-dark rounded-3xl p-8 text-center relative z-10 h-full">
+                        <div class="w-16 h-16 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black">4</div>
+                        <h3 class="font-bold text-xl mb-2">Сдача</h3>
+                        <p class="text-gray-400 text-sm">Проверка, подписание акта, оплата. Выдаем гарантийный талон</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section id="calculator" class="py-20 bg-brand-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl mx-auto bg-brand-gray rounded-3xl p-8 md:p-12 shadow-2xl scroll-reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-center mb-8">РАССЧИТАТЬ <span class="text-brand-orange">СТОИМОСТЬ</span></h2>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Тип работы</label>
+                        <select id="calcType" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none transition-colors">
+                            <option value="25000">Выгребная яма (стандарт)</option>
+                            <option value="35000">Выгребная яма (септик)</option>
+                            <option value="15000">Канализация (простая)</option>
+                            <option value="30000">Канализация (сложная)</option>
+                            <option value="30000">Отопление (базовое)</option>
+                            <option value="60000">Комплекс (всё включено)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-300">Глубина ямы (колец)</label>
+                        <input type="range" id="calcDepth" min="2" max="6" value="3" class="w-full accent-brand-orange" oninput="updateCalc()">
+                        <div class="flex justify-between text-sm text-gray-400 mt-1">
+                            <span>2 кольца</span>
+                            <span id="depthValue" class="text-brand-orange font-bold">3 кольца</span>
+                            <span>6 колец</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" id="calcUrgent" class="w-5 h-5 accent-brand-orange rounded" onchange="updateCalc()">
+                        <label for="calcUrgent" class="text-gray-300">Срочный выезд (в течение 24 часов) +20%</label>
+                    </div>
+
+                    <div class="border-t border-white/10 pt-6 mt-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xl text-gray-400">Примерная стоимость:</span>
+                            <span id="calcTotal" class="text-4xl font-black text-brand-orange">75 000 ₽</span>
+                        </div>
+                        
+                        <button onclick="openModal('Расчет калькулятора')" class="w-full bg-brand-orange text-white py-4 rounded-xl font-bold text-lg btn-glow">
+                            Получить точный расчет
+                        </button>
+                        <p class="text-center text-sm text-gray-500 mt-3">*Точная цена после осмотра объекта</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts / CTA -->
+    <section id="contacts" class="py-20 bg-gradient-to-br from-orange-600 to-red-700 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h2 class="font-display text-4xl md:text-6xl font-black mb-6">ЗВОНИТЕ ПРЯМО СЕЙЧАС!</h2>
+            <p class="text-xl md:text-2xl mb-8 text-white/90">Бесплатная консультация и выезд на объект</p>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
+                <a href="tel:+79617733166" class="bg-white text-orange-600 px-10 py-5 rounded-full font-black text-2xl md:text-3xl hover:scale-105 transition-transform shadow-2xl flex items-center gap-4">
+                    <i class="fas fa-phone-alt phone-pulse"></i>
+                    +7 (961) 773-31-66
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-left">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <i class="fas fa-map-marker-alt text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-1">Район работы</h4>
+                    <p class="text-white/80">Вся область и пригороды</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <i class="fas fa-clock text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-1">График</h4>
+                    <p class="text-white/80">Круглосуточно, без выходных</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <i class="fas fa-whatsapp text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-1">WhatsApp</h4>
+                    <p class="text-white/80">Пишите в любое время</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-white/10 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p class="mb-2">© 2026 СептикПро. Все права защищены.</p>
+            <p class="text-sm">ИНН: XXX XXX XXX XXX | ОГРН: XXX XXX XXX XXXX</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-brand-gray rounded-3xl p-8 max-w-md w-full relative animate-slide-up">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h3 class="font-display text-2xl font-bold mb-2">Оставить заявку</h3>
+            <p class="text-gray-400 mb-6" id="modalService">Мы перезвоним в течение 15 минут</p>
+            
+            <form onsubmit="submitForm(event)" class="space-y-4">
+                <input type="text" placeholder="Ваше имя" required class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none">
+                <input type="tel" placeholder="Телефон" required class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none">
+                <textarea placeholder="Комментарий (необязательно)" rows="3" class="w-full bg-brand-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-orange focus:outline-none"></textarea>
+                
+                <button type="submit" class="w-full bg-brand-orange text-white py-4 rounded-xl font-bold text-lg btn-glow">
+                    Отправить заявку
+                </button>
+                
+                <p class="text-xs text-gray-500 text-center">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fixed Call Button Mobile -->
+    <a href="tel:+79617733166" class="md:hidden fixed bottom-6 right-6 bg-brand-orange w-16 h-16 rounded-full flex items-center justify-center shadow-2xl z-40 btn-glow phone-pulse">
+        <i class="fas fa-phone-alt text-2xl"></i>
+    </a>
+
+    <script>
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-dark/95', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-brand-dark/95', 'shadow-lg');
+            }
+        });
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Calculator
+        function updateCalc() {
+            const type = parseInt(document.getElementById('calcType').value);
+            const depth = parseInt(document.getElementById('calcDepth').value);
+            const urgent = document.getElementById('calcUrgent').checked;
+            
+            document.getElementById('depthValue').textContent = depth + ' кольца';
+            
+            let total = type;
+            if (depth > 3) total += (depth - 3) * 5000;
+            if (urgent) total *= 1.2;
+            
+            document.getElementById('calcTotal').textContent = Math.round(total).toLocaleString() + ' ₽';
+        }
+
+        // Modal
+        function openModal(service) {
+            document.getElementById('modalService').textContent = service;
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            alert('Заявка отправлена! Мы перезвоним вам в ближайшее время.');
+            closeModal();
+        }
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal')) closeModal();
+        });
+
+        // Initialize calculator
+        updateCalc();
+    </script>
+</body>
+</html>
