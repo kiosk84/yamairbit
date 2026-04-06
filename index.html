@@ -93,6 +93,35 @@
         ::-webkit-scrollbar-track { background: #0F0F1A; }
         ::-webkit-scrollbar-thumb { background: #6366F1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #818CF8; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        .principle-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #6366F1, #A78BFA, #F472B6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .principle-card:hover::before {
+            transform: scaleX(1);
+        }
     </style>
 </head>
 <body class="bg-dark text-white font-sans overflow-x-hidden">
@@ -321,11 +350,109 @@
         </div>
     </section>
 
+    <!-- Tech Marquee -->
+    <section class="py-12 border-y border-dark-border overflow-hidden bg-dark-card/30">
+        <div class="flex whitespace-nowrap marquee-track">
+            <div class="flex items-center gap-12 px-6 text-gray-500 text-lg font-medium">
+                <span><i class="fab fa-js-square text-yellow-400 mr-2"></i>JavaScript</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-react text-cyan-400 mr-2"></i>React</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-node-js text-green-400 mr-2"></i>Node.js</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-python text-blue-400 mr-2"></i>Python</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-html5 text-orange-400 mr-2"></i>HTML5</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-css3-alt text-blue-400 mr-2"></i>CSS3</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-git-alt text-red-400 mr-2"></i>Git</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-wind text-cyan-300 mr-2"></i>Tailwind</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-database text-green-300 mr-2"></i>SQL</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-terminal text-gray-300 mr-2"></i>CLI</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-figma text-pink-400 mr-2"></i>Figma</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-fire text-orange-300 mr-2"></i>Firebase</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-docker text-blue-300 mr-2"></i>Docker</span>
+                <span class="text-accent">✦</span>
+            </div>
+            <div class="flex items-center gap-12 px-6 text-gray-500 text-lg font-medium">
+                <span><i class="fab fa-js-square text-yellow-400 mr-2"></i>JavaScript</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-react text-cyan-400 mr-2"></i>React</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-node-js text-green-400 mr-2"></i>Node.js</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-python text-blue-400 mr-2"></i>Python</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-html5 text-orange-400 mr-2"></i>HTML5</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-css3-alt text-blue-400 mr-2"></i>CSS3</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-git-alt text-red-400 mr-2"></i>Git</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-wind text-cyan-300 mr-2"></i>Tailwind</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-database text-green-300 mr-2"></i>SQL</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-terminal text-gray-300 mr-2"></i>CLI</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-figma text-pink-400 mr-2"></i>Figma</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fas fa-fire text-orange-300 mr-2"></i>Firebase</span>
+                <span class="text-accent">✦</span>
+                <span><i class="fab fa-docker text-blue-300 mr-2"></i>Docker</span>
+                <span class="text-accent">✦</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <p class="font-mono text-accent mb-4">03. Принципы</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Мой <span class="text-gradient">подход</span></h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="glass rounded-2xl p-8 card-hover scroll-reveal principle-card">
+                    <div class="w-14 h-14 bg-accent/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Скорость</h3>
+                    <p class="text-gray-400">Быстрая загрузка, отзывчивый интерфейс, минимум задержек. Пользователь не должен ждать.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 card-hover scroll-reveal principle-card">
+                    <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Надёжность</h3>
+                    <p class="text-gray-400">Чистый код, тесты, продуманная архитектура. Всё работает стабильно и предсказуемо.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 card-hover scroll-reveal principle-card">
+                    <div class="w-14 h-14 bg-pink-500/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-eye text-pink-400 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Дизайн</h3>
+                    <p class="text-gray-400">Продуманный UX, красивые анимации, внимание к деталям. Каждый пиксель на своём месте.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Portfolio -->
     <section id="portfolio" class="py-24">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 scroll-reveal">
-                <p class="font-mono text-accent mb-4">03. Портфолио</p>
+                <p class="font-mono text-accent mb-4">04. Портфолио</p>
                 <h2 class="text-4xl md:text-5xl font-bold">Мои <span class="text-gradient">работы</span></h2>
             </div>
 
@@ -385,7 +512,7 @@
     <section id="contact" class="py-24 bg-dark-card/50">
         <div class="container mx-auto px-6">
             <div class="max-w-3xl mx-auto text-center scroll-reveal">
-                <p class="font-mono text-accent mb-4">04. Контакты</p>
+                <p class="font-mono text-accent mb-4">05. Контакты</p>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">Давайте <span class="text-gradient">работать</span> вместе</h2>
                 <p class="text-gray-400 text-lg mb-10">
                     Есть идея или проект? Напишите мне — обсудим детали!
